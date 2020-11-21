@@ -3,13 +3,9 @@ Twitchで配信開始した際に、Discordへ通知するbot。予め、配信�
 使用用途が、speedrun配信の通知なので、コマンドはそれに合わせた名称になっております。  
 -配信者リスト登録は、コマンドから可能。  
 -登録するIDは、Twitchのユーザー名。（表示名ではないので注意）  
-<br>
-<br>
 ## 条件([Twitch API Reference](https://dev.twitch.tv/docs/api/reference#search-categories)を参照)  
 -ゲームID(game_id)  
 -タグID(tags_ids)  
-<br>
-<br>
 ## コマンドリスト
 - hi：挨拶兼動作確認。  
 - !addRunner：配信者の追加コマンド。重複防止付き。  
@@ -17,12 +13,12 @@ Twitchで配信開始した際に、Discordへ通知するbot。予め、配信�
 - !runnerList：登録されている配信者の一覧を表示する。  
 
 ## 事前準備
-`1. git clone https://github.com/Chien789626/discordjs-twitchNotification.git  
-2. cd discordjs-twitchNotification  
-3. npm install  
-4. mkdir db`  
+`1. git clone https://github.com/Chien789626/discordjs-twitchNotification.git<br>
+2. cd discordjs-twitchNotification<br>
+3. npm install<br>
+4. mkdir db`<br>
 
-5.config.jsonを作成し、起動前に以下のように設定を行う
+5.config.jsonを作成し、起動前に以下のように設定を行う<br>
 `{
     "prefix": "!",  
     "regexp": "/^[0-9a-zA-Z]*$/",  

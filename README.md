@@ -6,7 +6,7 @@ Twitchで配信開始した際に、Discordへ通知するbot。予め、配信�
 - CRUD操作はcsvファイルで行います。[[csv-database](https://github.com/ysnglt/node-csvdb)]  
 ## 条件([Twitch API Reference](https://dev.twitch.tv/docs/api/reference#search-categories)を参照)  
 - ゲームID(game_id)  
-- タグID(tags_ids)  
+- タグID(tag_id)  
 ## コマンドリスト
 - hi：挨拶兼動作確認。  
 - !addRunner：配信者の追加コマンド。重複防止付き。  

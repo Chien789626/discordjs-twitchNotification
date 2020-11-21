@@ -14,12 +14,13 @@ Twitchで配信開始した際に、Discordへ通知するbot。予め、配信�
 
 ## 事前準備
 ```
-1. git clone https://github.com/Chien789626/discordjs-twitchNotification.git<br>
-2. cd discordjs-twitchNotification<br>
-3. npm install<br>
-4. mkdir db<br>
+git clone https://github.com/Chien789626/discordjs-twitchNotification.git
+cd discordjs-twitchNotification
+npm install
+mkdir db
+touch config.json
 ```
-5.config.jsonを作成し、起動前に以下のように設定を行う<br>
+config.jsonへ、以下のように設定を行う  
 ```
 {
     "prefix": "!",  

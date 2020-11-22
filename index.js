@@ -5,7 +5,7 @@ const config = require('./config.json');
 const discord = require('discord.js');
 const crud = require('./crud');
 const client = new discord.Client();
-const regex = new RegExp(config.regexp);
+const regex = new RegExp(/^[a-zA-Z0-9!\s\_]+$/);
 const twitch = "https://www.twitch.tv/";
 const method = 'GET';
 const headers = {
@@ -22,7 +22,7 @@ client.on('ready', () => {
         crud.backupCsv();
     });
 
-    //配信通知
+    //配信通知(毎分取得)
     cron.schedule('* * * * *', function () {
         csv()
             .fromFile(config.csvFilePath)
@@ -33,7 +33,6 @@ client.on('ready', () => {
                         .then(res => {
                             //配信状態チェック
                             if (res.data[0].is_live === false) {
-                                console.log('Not streaming');
                                 try {
                                     crud.OffLine(res.data[0].display_name);
                                     return;
@@ -43,7 +42,6 @@ client.on('ready', () => {
                             }
                             //game_idチェック
                             if (!config.game_id.includes(res.data[0].game_id)) {
-                                console.log('GameId is not match');
                                 try {
                                     crud.OffLine(res.data[0].display_name);
                                     return;
@@ -52,14 +50,13 @@ client.on('ready', () => {
                                 }
                             }
                             let checkTags = res.data.filter((v) => {
-                                return (v.tag_ids === config.tag);
+                                return (v.tags_ids === config.tag);
                             });
                             let dtstr = res.data[0].started_at;
                             let dt = Date.parse(dtstr);
                             let jst = new Date(dt).toLocaleString("ja");
                             //タグチェック
                             if (!checkTags) {
-                                console.log('tagsId is not match');
                                 try {
                                     crud.OffLine(res.data[0].display_name);
                                     return;
@@ -69,7 +66,6 @@ client.on('ready', () => {
                             }
                             //通知済みの場合は再通知しない
                             if (Number(jsonObj[i].status) === 1) {
-                                console.log("Live Now");
                                 return;
                             }
                             crud.NowLive(res.data[0].display_name);
@@ -135,10 +131,8 @@ client.on('message', async message => {
         try {
             crud.addRunner(add_id).then(result => {
                 if(result == 'not exists'){
-                    console.log('3:' + result);
                     message.channel.send(`配信者リストへ ${add_id} が登録されました。`);
                 } else {
-                    console.log('3:' + result);
                     message.channel.send(`${add_id} は既に登録されています。`);
                 }
             });
@@ -158,10 +152,8 @@ client.on('message', async message => {
         try {
             crud.delRunner(del_id).then(result => {
                 if(result == 'exists'){
-                    console.log('3:' + result);
                     message.channel.send(`配信者リストから ${del_id} が削除されました。`);
                 } else {
-                    console.log('3:' + result);
                     message.channel.send(`${del_id} は登録されていません。`);
                 }
             });

@@ -27,7 +27,6 @@ touch config.json
 ```
 {
     "prefix": "!",  
-    "regexp": "/^[0-9a-zA-Z]*$/",  
     "game_id": [{game_id}],  
     "tag": "tag_id",  
     "token": "Your discord token",  

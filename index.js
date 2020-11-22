@@ -72,7 +72,7 @@ client.on('ready', () => {
                             fetch("https://api.twitch.tv/helix/games?id=" + res.data[0].game_id, { method, headers })
                                 .then(response => response.json())
                                 .then(response => {
-                                    client.channels.cache.get('706670786127069348').send('Now Live!!', {
+                                    client.channels.cache.get('Your channel id').send('Now Live!!', {
                                         embed: {
                                             title: res.data[0].title,
                                             description: `Game: ${response.data[0].name}\nLive started at: ${jst}`,

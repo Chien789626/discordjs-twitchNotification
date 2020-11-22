@@ -21,8 +21,12 @@ git clone https://github.com/Chien789626/discordjs-twitchNotification.git
 cd discordjs-twitchNotification
 npm install
 mkdir db
+cd db
+touch streamerList.csv
+cd ..
 touch config.json
 ```  
+
 3.config.jsonへ、下記のように設定を行う  
 ```
 {
